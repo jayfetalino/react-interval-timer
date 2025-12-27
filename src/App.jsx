@@ -45,7 +45,7 @@ function App() {
   const [isRunning,setIsRunning] = useState(false);
 
   useEffect(() => {
-    if (!isRunning) {
+    if (!isRunning || secondsLeft === 0) {
       return; 
     }
 
@@ -56,7 +56,7 @@ function App() {
     return () => { 
       clearInterval(intervalId);
     };
-  }, [isRunning]);
+  }, [isRunning, secondsLeft]);
 
   return (
     <main>
@@ -66,6 +66,7 @@ function App() {
 
       <button onClick={() => setSecondsLeft(60)}>Set 60s</button>
       <button onClick={() => setSecondsLeft(30)}>Set 30s</button>
+      <button onClick={() => setSecondsLeft(10)}>Set 10s</button>
       <button onClick={() => setIsRunning(true)}>Start</button>
       <button onClick={() => setIsRunning(false)}>Pause</button>
       <button onClick={() => setSecondsLeft(0)}>Reset</button>
